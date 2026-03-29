@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PP的幸福记录</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>PP的幸福记录</h1>
+        
+        <!-- 健康记录录入区域 -->
+        <section class="record-section">
+            <h2>记录健康事件</h2>
+            <div class="record-form">
+                <div class="form-row">
+                    <label>事件类型:</label>
+                    <select id="event-type">
+                        <option value="吃饭">吃饭</option>
+                        <option value="小便">小便</option>
+                        <option value="大便">大便</option>
+                        <option value="打针">打针</option>
+                        <option value="输液">输液</option>
+                        <option value="抽血">抽血</option>
+                        <option value="检查">检查</option>
+                        <option value="其他事项">其他事项</option>
+                    </select>
+                </div>
+                <div class="form-row" id="other-content-row" style="display: none;">
+                    <label>其他事项:</label>
+                    <input type="text" id="other-content" placeholder="请输入具体事项">
+                </div>
+                <div class="form-row">
+                    <label>备注:</label>
+                    <textarea id="remark" rows="2" placeholder="可选填"></textarea>
+                </div>
+                <div class="form-row">
+                    <button id="save-event" class="btn-primary">保存记录</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 统计区域 -->
+        <section class="stats-section">
+            <h2>健康统计</h2>
+            <div class="stats-buttons">
+                <button class="stats-btn" data-range="yesterday">昨天</button>
+                <button class="stats-btn active" data-range="today">今天</button>
+                <button class="stats-btn" data-range="this_week">本周</button>
+                <button class="stats-btn" data-range="this_month">本月</button>
+            </div>
+            <div id="stats-result" class="stats-result">
+                <div class="loading">点击上方按钮查看统计</div>
+            </div>
+        </section>
+        
+        <!-- 事件记录区域 -->
+        <section class="event-section">
+            <h2>健康记录</h2>
+            <div id="event-list" class="event-list">
+                <!-- 事件记录将通过JavaScript动态添加 -->
+                <div class="loading">加载中...</div>
+            </div>
+        </section>
+        
+        <!-- 访客互动区域 -->
+        <section class="visitor-section">
+            <h2>访客互动</h2>
+            <div class="interaction-buttons">
+                <button class="interact-btn" data-type="知晓">知晓</button>
+                <button class="interact-btn" data-type="赞">赞</button>
+                <button class="interact-btn" data-type="担心">担心</button>
+                <button class="interact-btn" data-type="请回复">请回复</button>
+            </div>
+            
+            <div class="visitor-form">
+                <input type="text" id="visitor-name" placeholder="请输入您的姓名" required>
+                <button id="submit-interaction">提交</button>
+            </div>
+        </section>
+        
+        <!-- 互动记录区域 -->
+        <section class="interaction-section">
+            <h2>互动记录</h2>
+            <div id="interaction-list" class="interaction-list">
+                <!-- 互动记录将通过JavaScript动态添加 -->
+                <div class="loading">加载中...</div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
