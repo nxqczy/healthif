@@ -1,0 +1,294 @@
+/* 全局样式 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    min-height: 100vh;
+}
+
+/* 标题样式 */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+h2 {
+    color: #34495e;
+    margin: 20px 0 15px;
+    font-size: 20px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+/* 事件列表样式 - 固定高度，可滚动 */
+.event-list,
+.interaction-list {
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.event-item,
+.interaction-item {
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-bottom: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.event-item .event-time,
+.interaction-item .interaction-time {
+    font-size: 11px;
+    color: #7f8c8d;
+    margin-bottom: 2px;
+}
+
+.event-item .event-content,
+.interaction-item .interaction-content {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.event-item .event-remark {
+    font-size: 11px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* 记录表单样式 */
+.record-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.record-form .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.record-form label {
+    min-width: 80px;
+    font-size: 14px;
+    color: #34495e;
+}
+
+.record-form select,
+.record-form input[type="text"],
+.record-form textarea {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.record-form textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.btn-primary {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #27ae60;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #229954;
+}
+
+/* 统计区域样式 */
+.stats-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.stats-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.stats-btn {
+    flex: 1;
+    min-width: 60px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.stats-btn:hover {
+    background-color: #2980b9;
+}
+
+.stats-btn.active {
+    background-color: #e74c3c;
+}
+
+.stats-result {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.stats-result .stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.stats-result .stat-item:last-child {
+    border-bottom: none;
+    font-weight: bold;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 2px solid #3498db;
+}
+
+.stats-result .stats-title {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* 互动按钮样式 */
+.interaction-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.interact-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.interact-btn:hover {
+    background-color: #2980b9;
+}
+
+.interact-btn.active {
+    background-color: #27ae60;
+}
+
+/* 访客表单样式 */
+.visitor-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.visitor-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.visitor-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.visitor-form button:hover {
+    background-color: #c0392b;
+}
+
+/* 加载状态 */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #7f8c8d;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 18px;
+    }
+    
+    .interaction-buttons {
+        flex-direction: column;
+    }
+    
+    .interact-btn {
+        width: 100%;
+    }
+    
+    .visitor-form {
+        flex-direction: column;
+    }
+    
+    .visitor-form button {
+        width: 100%;
+    }
+}
