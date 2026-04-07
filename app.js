@@ -123,6 +123,7 @@ async function loadEvents() {
         data.forEach(function(event) {
             var eventItem = document.createElement('div');
             eventItem.className = 'event-item';
+            eventItem.dataset.id = event.id;
             
             var eventTime = document.createElement('div');
             eventTime.className = 'event-time';
@@ -142,11 +143,19 @@ async function loadEvents() {
                 eventRemark.textContent = '备注: ' + event.remark;
             }
             
+            var deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-btn';
+            deleteButton.textContent = '删除';
+            deleteButton.addEventListener('click', function() {
+                deleteEvent(event.id);
+            });
+            
             eventItem.appendChild(eventTime);
             eventItem.appendChild(eventContent);
             if (event.remark) {
                 eventItem.appendChild(eventRemark);
             }
+            eventItem.appendChild(deleteButton);
             
             eventList.appendChild(eventItem);
         });
@@ -197,6 +206,7 @@ async function loadInteractions() {
         data.forEach(function(interaction) {
             var interactionItem = document.createElement('div');
             interactionItem.className = 'interaction-item';
+            interactionItem.dataset.id = interaction.id;
             
             var interactionTime = document.createElement('div');
             interactionTime.className = 'interaction-time';
@@ -210,8 +220,16 @@ async function loadInteractions() {
             }
             interactionContent.textContent = content;
             
+            var deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-btn';
+            deleteButton.textContent = '删除';
+            deleteButton.addEventListener('click', function() {
+                deleteInteraction(interaction.id);
+            });
+            
             interactionItem.appendChild(interactionTime);
             interactionItem.appendChild(interactionContent);
+            interactionItem.appendChild(deleteButton);
             
             interactionList.appendChild(interactionItem);
         });
@@ -545,6 +563,69 @@ async function loadStats(timeRange) {
 }
 
 
+
+// 删除事件记录
+async function deleteEvent(eventId) {
+    if (!confirm('确定要删除这条记录吗？')) {
+        return;
+    }
+    
+    try {
+        var url = `${supabaseUrl}/rest/v1/event_records?id=eq.${eventId}`;
+        console.log('删除事件URL:', url);
+        
+        var response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        console.log('删除事件成功:', eventId);
+        await loadEvents();
+        await loadStats(currentStatsRange);
+    } catch (error) {
+        console.error('删除事件出错:', error);
+        alert('删除失败，请重试');
+    }
+}
+
+// 删除互动记录
+async function deleteInteraction(interactionId) {
+    if (!confirm('确定要删除这条互动记录吗？')) {
+        return;
+    }
+    
+    try {
+        var url = `${supabaseUrl}/rest/v1/visitor_interact?id=eq.${interactionId}`;
+        console.log('删除互动URL:', url);
+        
+        var response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        console.log('删除互动成功:', interactionId);
+        await loadInteractions();
+    } catch (error) {
+        console.error('删除互动出错:', error);
+        alert('删除失败，请重试');
+    }
+}
 
 // 页面加载完成后初始化
 if (document.readyState === 'loading') {

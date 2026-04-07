@@ -47,8 +47,7 @@ h2 {
     padding: 5px;
 }
 
-.event-item,
-.interaction-item {
+.event-item, .interaction-item {
     background-color: #f9f9f9;
     border-radius: 4px;
     padding: 6px 10px;
@@ -56,6 +55,24 @@ h2 {
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     font-size: 12px;
     line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-btn {
+    margin-top: 5px;
+    padding: 3px 8px;
+    border: none;
+    border-radius: 3px;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 11px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
 }
 
 .event-item .event-time,
